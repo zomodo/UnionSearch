@@ -43,7 +43,7 @@ class Video(models.Model):
     classfication=models.ForeignKey('Classfication',verbose_name='分类')
     level=models.ForeignKey('Level',verbose_name='级别')
     weight=models.IntegerField(default=0,help_text='权重按照从大到小排列',verbose_name='权重（从大到小排列）')
-    img=models.ImageField(upload_to='./static/img/',verbose_name='图片',null=True,blank=True)
+    img=models.ImageField(upload_to='img',verbose_name='图片',null=True,blank=True)
     href=models.URLField(verbose_name='视频地址')
 
     class Meta:
