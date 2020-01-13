@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div a{
+            display: inline-block;
+            border: 1px solid sandybrown;
+            padding: 5px 10px;
+            margin: 5px 8px;
+            text-decoration: none;
+        }
+        div a.active{
+            background-color: sandybrown;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="direaction">
+    {% if kwargs.direaction_id == 0 %}
+        <a class="active" href="/video-0-{{ kwargs.classfication_id }}-{{ kwargs.level_id }}.html">全部</a>
+    {% else %}
+        <a href="/video-0-{{ kwargs.classfication_id }}-{{ kwargs.level_id }}.html">全部</a>
+    {% endif %}
+
+    {% for item in direaction %}
+        {% if item.id == kwargs.direaction_id %}
+            <a class="active" href="/video-{{ item.id }}-{{ kwargs.classfication_id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+        {% else %}
+            <a href="/video-{{ item.id }}-{{ kwargs.classfication_id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="classfication">
+    {% if kwargs.classfication_id == 0 %}
+        <a class="active" href="/video-{{ kwargs.direaction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+    {% else %}
+        <a href="/video-{{ kwargs.direaction_id }}-0-{{ kwargs.level_id }}.html">全部</a>
+    {% endif %}
+
+    {% for item in classfication  %}
+        {% if item.id == kwargs.classfication_id %}
+            <a class="active" href="/video-{{ kwargs.direaction_id }}-{{ item.id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+        {% else %}
+            <a href="/video-{{ kwargs.direaction_id }}-{{ item.id }}-{{ kwargs.level_id }}.html">{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="level">
+    {% if kwargs.level_id == 0 %}
+        <a class="active" href="/video-{{ kwargs.direaction_id }}-{{ kwargs.classfication_id }}-0.html">全部</a>
+    {% else %}
+        <a href="/video-{{ kwargs.direaction_id }}-{{ kwargs.classfication_id }}-0.html">全部</a>
+    {% endif %}
+
+    {% for item in level %}
+        {% if item.id == kwargs.level_id %}
+            <a class="active" href="/video-{{ kwargs.direaction_id }}-{{ kwargs.classfication_id }}-{{ item.id }}.html">{{ item.name }}</a>
+        {% else %}
+            <a href="/video-{{ kwargs.direaction_id }}-{{ kwargs.classfication_id }}-{{ item.id }}.html">{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<hr>
+
+<div class="content">
+    {% for v in video %}
+        <p>{{ v.title }}</p>
+    {% endfor %}
+
+</div>
+</body>
+</html>
